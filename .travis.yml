@@ -7,3 +7,16 @@ before_install:
 
 script:
     - docker run -e CI=true santanurahaman/docker-react-helloworld npm run test -- --coverage
+
+deploy:
+    provider: elasticbeanstalk
+    region: "ap-south-1"
+    app: "docker-react-helloworld"
+    env: "DockerReactHelloworld-env"
+    bucket_name: "elasticbeanstalk-ap-south-1-383181077630"
+    bucket_path: "docker-react-helloworld"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+        secure: "$AWS_SECRET_KEY"
