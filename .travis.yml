@@ -1,0 +1,9 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t santanurahaman/docker-react-helloworld -f Dockerfile.dev .
+
+script:
+    - docker run santanurahaman/docker-react-helloworld npm run test -- --coverage    
